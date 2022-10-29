@@ -1,4 +1,9 @@
+using Currency.Exchange.Data;
 using Currency.Exchange.External.Client;
+using Currency.Exchange.Profiles;
+using Currency.Exchange.Services;
+using Currency.Exchange.Validators;
+using FluentValidation;
 using Refit;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +24,18 @@ builder.Services.AddRefitClient<IFixerClient>().ConfigureHttpClient(client =>
     client.DefaultRequestHeaders.Add(FixerOptions.ApiKeyHeaderName,
         builder.Configuration.GetSection(FixerOptions.SectionName).Get<FixerOptions>().ApiKey);
 });
+
+// Register repositories.
+builder.Services.AddScoped<ICurrencyExchangeRepository, CurrencyExchangeRepository>();
+
+//Register services.
+builder.Services.AddScoped<IExchangeService, ExchangeService>();
+
+//Register validators.
+builder.Services.AddValidatorsFromAssemblyContaining<TradeRequestValidator>();
+
+//Register mapping profiles.
+builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
 var app = builder.Build();
 

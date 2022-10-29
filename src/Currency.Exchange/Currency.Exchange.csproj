@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Currency.Exchange.Data\Currency.Exchange.Data.csproj" />
+      <ProjectReference Include="..\Currency.Exchange.External.Client\Currency.Exchange.External.Client.csproj" />
+      <ProjectReference Include="..\Currency.Exchange.Public.Contracts\Currency.Exchange.Public.Contracts.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="12.0.0" />
+      <PackageReference Include="FluentValidation" Version="11.2.2" />
+    </ItemGroup>
+
+</Project>
