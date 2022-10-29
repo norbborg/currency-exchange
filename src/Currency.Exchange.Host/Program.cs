@@ -1,5 +1,4 @@
-using System.Net.Http.Headers;
-using currency.exchange.external.client;
+using Currency.Exchange.External.Client;
 using Refit;
 
 var builder = WebApplication.CreateBuilder(args);

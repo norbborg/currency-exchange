@@ -1,6 +1,6 @@
 using Refit;
 
-namespace currency.exchange.external.client;
+namespace Currency.Exchange.External.Client;
 
 public interface IFixerClient
 {
