@@ -23,7 +23,7 @@ public class ExchangeController : ControllerBase
         var validation = await _validator.ValidateAsync(request);
         if (!validation.IsValid)
         {
-            return BadRequest(validation.Errors);
+            return BadRequest(validation.Errors.ToCurrencyExchangeErrors());
         }
 
         var result = await _exchangeService.AddTrade(request);

@@ -9,7 +9,6 @@ using Currency.Exchange.Validators;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Refit;
-using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
