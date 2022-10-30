@@ -21,7 +21,8 @@ public class TradeRequestValidator : AbstractValidator<TradeRequest>
         
         RuleFor(request => request.ToCurrencyCode)
             .NotEmpty()
-            .MustAsync(async (s, token) => await DoSymbolExist(s)).WithMessage("Invalid currency code.");
+            .MustAsync(async (s, token) => await DoSymbolExist(s)).WithMessage("Invalid currency code.")
+            .Must((request, s) => !s.Equals(request.FromCurrencyCode)).WithMessage("From and To currencies should be different.");
         
         RuleFor(request => request.Amount)
             .NotEmpty();

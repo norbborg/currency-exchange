@@ -1,3 +1,4 @@
+using Currency.Exchange.External.Client.Models;
 using Refit;
 
 namespace Currency.Exchange.External.Client;
@@ -5,5 +6,8 @@ namespace Currency.Exchange.External.Client;
 public interface IFixerClient
 {
     [Get("/latest")]
-    Task<FixerResponse> GetExchangeRatesAsync([Query(CollectionFormat.Csv)]string[] symbols, [Query]string @base);
+    Task<ExchangeRateResponse> GetExchangeRatesAsync([Query(CollectionFormat.Csv)]string[] symbols, [Query]string @base);
+    
+    [Get("/symbols")]
+    Task<SymbolsResponse> GetSymbolsAsync();
 }
