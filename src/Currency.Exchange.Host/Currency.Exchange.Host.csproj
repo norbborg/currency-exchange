@@ -16,6 +16,7 @@
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.10" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     <PackageReference Include="Refit.HttpClientFactory" Version="6.3.2" />
+    <PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
@@ -25,5 +26,4 @@
     <ProjectReference Include="..\Currency.Exchange.External.Client\Currency.Exchange.External.Client.csproj" />
     <ProjectReference Include="..\Currency.Exchange\Currency.Exchange.csproj" />
   </ItemGroup>
-
 </Project>

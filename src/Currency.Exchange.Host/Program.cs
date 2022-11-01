@@ -9,6 +9,7 @@ using Currency.Exchange.Validators;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Refit;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+
+//register logging
+builder.Host.UseSerilog((context, configuration) => configuration
+    .WriteTo.Console()
+    .ReadFrom.Configuration(context.Configuration));
 
 // Configure IPStack configuration.
 builder.Services.Configure<FixerOptions>(builder.Configuration.GetSection(FixerOptions.SectionName));
@@ -55,7 +61,7 @@ builder.Services.AddStackExchangeRedisCache(options =>
 });
 
 var app = builder.Build();
-
+app.UseSerilogRequestLogging();
 app.UseRouting();
 app.UseEndpoints(endpoints => endpoints.MapControllers());
 
