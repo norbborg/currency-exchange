@@ -38,8 +38,13 @@ public class ExchangeController : ControllerBase
             }
 
             var result = await _exchangeService.AddTradeAsync(request);
+            
+            if (result.IsError)
+            {
+                return BadRequest(result.Errors);
+            }
 
-            return result.ToString();
+            return result.Data.ToString();
         }
         catch (Exception ex)
         {

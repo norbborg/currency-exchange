@@ -10,6 +10,7 @@ using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Refit;
 using Serilog;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,6 +60,9 @@ builder.Services.AddStackExchangeRedisCache(options =>
     options.Configuration = builder.Configuration.GetConnectionString("Redis");
     options.InstanceName = Constants.RedisInstanceName;
 });
+
+builder.Services.AddSingleton<IConnectionMultiplexer>(_ =>
+    ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("Redis")));
 
 var app = builder.Build();
 app.UseSerilogRequestLogging();

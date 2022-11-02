@@ -8,6 +8,6 @@
         public string Tocurrency { get; set; } = null!;
         public decimal Exchangerate { get; set; }
         public decimal Amount { get; set; }
-        public DateTime? Datecreated { get; set; }
+        public DateTime Datecreated { get; set; }
     }
 }

@@ -1,8 +1,9 @@
+using Currency.Exchange.Models;
 using Currency.Exchange.Public.Contracts.Requests;
 
 namespace Currency.Exchange.Services;
 
 public interface IExchangeService
 {
-    Task<int> AddTradeAsync(TradeRequest request);
+    Task<Result<int>> AddTradeAsync(TradeRequest request);
 }
