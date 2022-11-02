@@ -37,7 +37,7 @@ public class ExchangeController : ControllerBase
                 return BadRequest(validation.Errors.ToCurrencyExchangeErrors());
             }
 
-            var result = await _exchangeService.AddTrade(request);
+            var result = await _exchangeService.AddTradeAsync(request);
 
             return result.ToString();
         }

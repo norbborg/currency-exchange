@@ -21,7 +21,7 @@ public class SymbolService : ISymbolService
         _logger = logger;
     }
 
-    public async Task<IDictionary<string, string>> GetSymbols()
+    public async Task<IDictionary<string, string>> GetSymbolsAsync()
     {
         try
         {

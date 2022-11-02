@@ -23,7 +23,7 @@ public class ExchangeService : IExchangeService
         _cacheStore = cacheStore;
     }
 
-    public async Task<int> AddTrade(TradeRequest request)
+    public async Task<int> AddTradeAsync(TradeRequest request)
     {
         var mappedRequest = _mapper.Map<Data.DbContext.Exchange>(request);
 

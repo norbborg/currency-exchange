@@ -30,7 +30,7 @@ public class TradeRequestValidator : AbstractValidator<TradeRequest>
 
     private async Task<bool> DoSymbolExist(string symbol)
     {
-        var symbols = await _symbolService.GetSymbols();
+        var symbols = await _symbolService.GetSymbolsAsync();
         return symbols.ContainsKey(symbol);
     }
 }
