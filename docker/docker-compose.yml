@@ -4,5 +4,36 @@ services:
   currency.exchange.host:
     image: ${DOCKER_REGISTRY-}currencyexchangehost
     build:
-      context: .
-      dockerfile: src/currency.exchange.host/Dockerfile
+      context: ..
+      dockerfile: src/Currency.Exchange.Host/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__Default=Host=db;Username=postgres;Password=MyPassword!23;Database=exchange;
+      - ConnectionStrings__Redis=redis:6379,password=RedisPassword!23
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "6002:80"
+    restart: on-failure
+  db:
+    image: postgres:15.0-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: MyPassword!23
+      POSTGRES_DB: exchange
+    ports:
+      - "5432:5432"
+  redis:
+      image: docker.io/bitnami/redis:7.0
+      environment:
+        - REDIS_PASSWORD=RedisPassword!23
+        - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+      ports:
+        - '6379:6379'
+      volumes:
+        - 'redis_data:/bitnami/redis/data'
+
+volumes:
+  redis_data:
+    driver: local

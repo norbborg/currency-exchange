@@ -1,5 +1,3 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
@@ -7,16 +5,15 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["currency.exchange.host/currency.exchange.host.csproj", "currency.exchange.host/"]
-RUN dotnet restore "currency.exchange.host/currency.exchange.host.csproj"
+COPY ["src/Currency.Exchange.Host/Currency.Exchange.Host.csproj", "Currency.Exchange.Host/"]
+RUN dotnet restore "Currency.Exchange.Host/Currency.Exchange.Host.csproj"
 COPY . .
-WORKDIR "/src/currency.exchange.host"
-RUN dotnet build "currency.exchange.host.csproj" -c Release -o /app/build
+WORKDIR "/src/src/Currency.Exchange.Host"
+RUN dotnet build "Currency.Exchange.Host.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "currency.exchange.host.csproj" -c Release -o /app/publish /p:UseAppHost=false
-
+RUN dotnet publish "Currency.Exchange.Host.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "currency.exchange.host.dll"]
+ENTRYPOINT ["dotnet", "Currency.Exchange.Host.dll"]
