@@ -20,4 +20,4 @@ This currency exchange service keeps track of currency exchange trades done by c
   - password: `MyPassword!23`  
 - Execute the script named `create-exchange-table.sql` from `sql` directory.
 - From the docker directory execute `docker compose up` in a terminal.
-- From a browser visit [the localhost swagger.](http://localhost:6000/swagger/index.html)
+- From a browser visit [the localhost swagger.](http://localhost:6002/swagger/index.html)
